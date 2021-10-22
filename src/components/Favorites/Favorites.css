@@ -19,9 +19,9 @@
 
 .favorites__save {
     border: none;
-    background-color: #496DDB;
+    background-color: #8C2255;
     padding: 10px 15px;
-    color: #FFEEDB;
+    color: #fff;
     font-size: 14px;
     transition: all 0.2s linear;
 }

@@ -8,8 +8,16 @@ class SearchBox extends Component {
     searchLineChangeHandler = (e) => {
         this.setState({ searchLine: e.target.value });
     }
-    searchBoxSubmitHandler = (e) => {
-        e.preventDefault();
+    searchBoxSubmitHandler = (event) => {
+        event.preventDefault();
+
+        fetch (`http://www.omdbapi.com/?apikey=98736095&s=${this.state.searchLine}`)
+            .then(res => res.json())
+            .then(data => {
+                //Проверка на undefined
+                this.props.updateData(data.Search)
+            })
+            .catch(err => console.log(err))
     }
     render() {
         const { searchLine } = this.state;

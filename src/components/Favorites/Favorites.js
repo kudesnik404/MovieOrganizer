@@ -12,7 +12,7 @@ class Favorites extends Component {
     render() { 
         return (
             <div className="favorites">
-                <input value="Новый список" className="favorites__name" />
+                <input placeholder="Введите название списка" className="favorites__name" />
                 <ul className="favorites__list">
                     {this.state.movies.map((item) => {
                         return <li key={item.id}>{item.title} ({item.year})</li>;

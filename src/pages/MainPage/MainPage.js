@@ -6,6 +6,15 @@ import Movies from '../../components/Movies/Movies';
 import Favorites from '../../components/Favorites/Favorites';
 
 class MainPage extends Component {
+
+    state = {
+        data: []
+    }
+
+    updateData = (value) => {
+        this.setState({ data: value })
+    }
+
     render() { 
         return (
             <div className="main-page">
@@ -13,10 +22,10 @@ class MainPage extends Component {
                 <main className="main-page__content">
                     <section className="main-page__main-section">
                         <div className="main-page__search-box">
-                            <SearchBox />
+                            <SearchBox updateData={this.updateData} />
                         </div>
                         <div className="main-page__movies">
-                            <Movies />
+                            <Movies data={this.state.data} />
                         </div>
                     </section>
                     <aside className="main-page__favorites">
