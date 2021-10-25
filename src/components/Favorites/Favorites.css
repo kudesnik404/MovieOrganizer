@@ -17,6 +17,29 @@
     margin-bottom: 24px;
 }
 
+.favorites__list li {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.favorites__list button {
+    background-color: #C5FCCA;
+    font-weight: bold;
+    border: none;
+    box-shadow: 2px 2px 3px #99c59d;
+    transition: all 0.2s linear;
+}
+
+.favorites__list button:hover {
+    background-color: #8C2255;
+    box-shadow: 2px 2px 3px #6b1941;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: all 0.2s linear;
+}
+
 .favorites__save {
     border: none;
     background-color: #8C2255;
@@ -30,4 +53,11 @@
     cursor: pointer;
     opacity: 0.9;
     transition: all 0.2s linear;
+}
+
+.favorites__save:disabled {
+    background-color: #d3d3d3;
+    color: #C5FCCA;
+    opacity: 0.5;
+    cursor: not-allowed;
 }

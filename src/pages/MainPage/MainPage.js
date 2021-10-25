@@ -8,11 +8,22 @@ import Favorites from '../../components/Favorites/Favorites';
 class MainPage extends Component {
 
     state = {
-        data: []
+        data: [],
+        favorites: []
     }
 
     updateData = (value) => {
         this.setState({ data: value })
+    }
+
+    addToFav = (elem) => {
+        if (!this.state.favorites.find((e) => elem.imdbID == e.imdbID)) {
+            this.setState({ favorites: [...this.state.favorites, elem]})
+        }
+    }
+
+    deleteFromFav = (value) => {
+        this.setState({ favorites: value })
     }
 
     render() { 
@@ -25,11 +36,11 @@ class MainPage extends Component {
                             <SearchBox updateData={this.updateData} />
                         </div>
                         <div className="main-page__movies">
-                            <Movies data={this.state.data} />
+                            <Movies data={this.state.data} addToFav={this.addToFav} />
                         </div>
                     </section>
                     <aside className="main-page__favorites">
-                        <Favorites />
+                        <Favorites favorites={this.state.favorites} deleteFromFav={this.deleteFromFav} saveTheList={this.props.saveTheList} />
                     </aside>
                 </main>
             </div>

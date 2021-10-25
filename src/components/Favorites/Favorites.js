@@ -4,21 +4,25 @@ import './Favorites.css';
 
 class Favorites extends Component {
     state = {
-        title: 'Новый список',
-        movies: [
-            { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 }
-        ]
+        listName: ''
     }
-    render() { 
+
+    deleteFav = (item, index) => {
+        let favs = [...this.props.favorites]
+        favs.splice(index, 1)
+        this.props.deleteFromFav(favs)
+    }
+
+    render() {
         return (
             <div className="favorites">
-                <input placeholder="Введите название списка" className="favorites__name" />
+                <input placeholder="Введите название списка" className="favorites__name" onChange={(e) => this.setState({ listName: e.target.value })} />
                 <ul className="favorites__list">
-                    {this.state.movies.map((item) => {
-                        return <li key={item.id}>{item.title} ({item.year})</li>;
+                    {this.props.favorites.map((item, index) => {
+                        return <li key={index}>{item.Title} ({item.Year}) <button type="button" className="favorites__delete" onClick={() => this.deleteFav(item, index)}>X</button></li>;
                     })}
                 </ul>
-                <button type="button" className="favorites__save">Сохранить список</button>
+                <button disabled={this.props.favorites.length > 0 ? false : true} type="button" className="favorites__save" onClick={() => {this.props.saveTheList(this.state.listName, this.props.favorites)}}>Сохранить список</button>
             </div>
         );
     }
