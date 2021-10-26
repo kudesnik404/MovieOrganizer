@@ -22,7 +22,7 @@ class Favorites extends Component {
                         return <li key={index}>{item.Title} ({item.Year}) <button type="button" className="favorites__delete" onClick={() => this.deleteFav(item, index)}>X</button></li>;
                     })}
                 </ul>
-                <button disabled={this.props.favorites.length > 0 ? false : true} type="button" className="favorites__save" onClick={() => {this.props.saveTheList(this.state.listName, this.props.favorites)}}>Сохранить список</button>
+                <button disabled={this.props.favorites.length > 0 ? false : true} type="button" className="favorites__save" onClick={() => {this.state.listName == '' ? this.props.saveTheList('Мой список', this.props.favorites) : this.props.saveTheList(this.state.listName, this.props.favorites)}}>Сохранить список</button>
             </div>
         );
     }

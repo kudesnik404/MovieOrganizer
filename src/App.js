@@ -10,19 +10,32 @@ class App extends React.Component {
 
   state = {
     savedListTitle: '',
-    savedList: []
+    savedList: [],
   }
 
   saveTheList = (title, list) => {
-    if (list.length > 0) {
-      this.setState({ savedListTitle: title })
-      if (list !== '') {
-        this.setState({ savedList: list })
-      } else {
-        this.setState({ savedList: 'Мой список' })
-      }
-    }
-    console.log(this.state)
+        this.setState({ savedList: list, savedListTitle: title}, () => {
+
+          const idArr = []
+
+          this.state.savedList.forEach(elem => {
+              idArr.push(elem.imdbID)
+          })
+
+          const objToPost = {
+            "title": this.state.savedListTitle,
+            "movies": [idArr]
+          }
+
+          fetch('https://acb-api.algoritmika.org/api/movies/list', {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(objToPost)
+          });
+          //сделать проверку и изменение кнопки "сохранить список" (положить в неё ссылку)
+        })
   }
 
   render() {
