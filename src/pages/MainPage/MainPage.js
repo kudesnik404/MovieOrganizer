@@ -40,7 +40,7 @@ class MainPage extends Component {
                         </div>
                     </section>
                     <aside className="main-page__favorites">
-                        <Favorites favorites={this.state.favorites} deleteFromFav={this.deleteFromFav} saveTheList={this.props.saveTheList} />
+                        <Favorites favorites={this.state.favorites} deleteFromFav={this.deleteFromFav} saveTheList={this.props.saveTheList} link={this.props.link} />
                     </aside>
                 </main>
             </div>

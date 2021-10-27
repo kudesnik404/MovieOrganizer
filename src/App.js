@@ -11,6 +11,7 @@ class App extends React.Component {
   state = {
     savedListTitle: '',
     savedList: [],
+    link: ''
   }
 
   saveTheList = (title, list) => {
@@ -33,7 +34,11 @@ class App extends React.Component {
             'Content-type': 'application/json'
           },
           body: JSON.stringify(objToPost)
-          });
+          })
+          .then (res => res.json())
+          .then (data => {
+            this.setState({ link: `list/${data.id}`})
+          })
           //сделать проверку и изменение кнопки "сохранить список" (положить в неё ссылку)
         })
   }
@@ -42,7 +47,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <Route path="/" exact>
-          <MainPage saveTheList={this.saveTheList} />
+          <MainPage saveTheList={this.saveTheList} link={this.state.link} />
         </Route>
         <Route path="/list/:id" exact>
            <ListPage savedList={this.state.savedList} savedListTitle={this.state.savedListTitle} />
